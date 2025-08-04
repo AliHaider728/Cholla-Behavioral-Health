@@ -17,7 +17,7 @@ const programs = [
   },
   { name: "PHP IOP OP", href: "/outpatient-levels-of-care" },
   { name: "ADHD Concentration", href: "/concentration-acceleration-program" },
-  { name: "Individual Services", href: "/services" },
+  { name: "Individual Services", href: "/IndividualServices" },
 ];
 
 export default function Navbar() {
