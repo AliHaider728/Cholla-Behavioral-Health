@@ -133,3 +133,21 @@
   }
     
 }
+.bouns{
+
+  animation: bouns 2s ease-in-out infinite ;
+  transition: 0.3s all ease-in-out;
+
+  
+
+}
+
+@keyframes bouns {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translatex(5px);
+ 
+  }
+}

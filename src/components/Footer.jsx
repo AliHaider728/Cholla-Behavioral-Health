@@ -176,7 +176,7 @@ export default function Footer() {
       <div className="relative border-t border-slate-700/50 bg-slate-900/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-slate-300 font-medium md:flex  text-center" >© 2024 Cholla Behavioral Health. All rights reserved. Powerd by TecnoSphere</p>
+            <p className="text-sm text-slate-300 font-medium md:flex  text-center" >© 2024 Cholla Behavioral Health. All rights reserved. <span  className="bouns"> Powerd by TecnoSphere</span></p>
             <div className="flex space-x-8">
               <Link to="/privacy-policy" className="group relative text-sm text-slate-300 hover:text-white transition-colors duration-300 font-medium">
                 Privacy Policy
