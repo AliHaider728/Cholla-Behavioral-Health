@@ -599,7 +599,7 @@ export default function Home() {
                   "Evidence-based treatments with high success rates.",
               },
             ].map((item, index) => (
-              <div key={index} className="scale gsap-stagger text-center">
+              <div key={index} className="hello gsap-stagger text-center">
                 <div className="w-14 sm:w-16 h-14 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <item.icon className="rotate h-6 sm:h-8 w-6 sm:w-8 text-blue-600" />
                 </div>
