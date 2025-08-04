@@ -115,10 +115,11 @@ export default function Navbar() {
                 />
               </div>
               <div className="min-w-0 flex-1">
-                <h1 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-blue-600 leading-tight">
-                  <span className="block sm:inline">Cholla Behavioral</span>
-                  <span className="block sm:inline sm:ml-1">Health</span>
-                </h1>
+                <h1 className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-semibold text-blue-600 whitespace-nowrap">
+  <span className="inline">Cholla Behavioral</span>
+  <span className="inline sm:ml-1">Health</span>
+</h1>
+
                 <p className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
                   You Deserve To Be Well
                 </p>
