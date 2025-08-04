@@ -11,7 +11,10 @@ const navigation = [
 ];
 
 const programs = [
-  { name: "Medication Prescribing and Management", href: "/mat-med-management" },
+  {
+    name: "Medication Prescribing and Management",
+    href: "/mat-med-management",
+  },
   { name: "PHP IOP OP", href: "/outpatient-levels-of-care" },
   { name: "ADHD Concentration", href: "/concentration-acceleration-program" },
   { name: "Individual Services", href: "/services" },
@@ -80,16 +83,22 @@ export default function Navbar() {
             <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-6">
               <div className="flex items-center space-x-1 sm:space-x-1.5 hover:text-red-200 transition-colors duration-300">
                 <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
-                <span className="text-xs sm:text-sm whitespace-nowrap">(480) 790-6666</span>
+                <span className="text-xs sm:text-sm whitespace-nowrap">
+                  (480) 790-6666
+                </span>
               </div>
               <div className="hidden sm:flex items-center space-x-1.5 hover:text-red-200 transition-colors duration-300">
                 <Mail className="w-3.5 h-3.5 flex-shrink-0" />
-                <span className="text-xs truncate max-w-[200px] lg:max-w-none">info@chollabehavioralhealth.com</span>
+                <span className="text-xs truncate max-w-[200px] lg:max-w-none">
+                  info@chollabehavioralhealth.com
+                </span>
               </div>
             </div>
             <div className="flex items-center space-x-1 sm:space-x-1.5 hover:text-red-200 transition-colors duration-300">
               <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
-              <span className="text-xs sm:text-sm whitespace-nowrap">Mesa, AZ</span>
+              <span className="text-xs sm:text-sm whitespace-nowrap">
+                Mesa, AZ
+              </span>
             </div>
           </div>
         </div>
@@ -106,7 +115,10 @@ export default function Navbar() {
         <div className="container mx-auto px-2 sm:px-4 lg:px-8 max-w-7xl">
           <div className="flex justify-between items-center py-2 sm:py-3 lg:py-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2 sm:space-x-3 cursor-pointer flex-shrink-0">
+            <Link
+              to="/"
+              className="flex items-center space-x-2 sm:space-x-3 cursor-pointer flex-shrink-0"
+            >
               <div className="relative">
                 <img
                   src="https://chollabehavioralhealth.com/wp-content/uploads/2024/02/Cholla-Behavioral-Health.png"
@@ -115,10 +127,10 @@ export default function Navbar() {
                 />
               </div>
               <div className="min-w-0 flex-1">
-                <h1 className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-semibold text-blue-600 whitespace-nowrap">
-  <span className="inline">Cholla Behavioral</span>
-  <span className="inline sm:ml-1">Health</span>
-</h1>
+                <h1 className="text-xl sm:text-sm md:text-base lg:text-lg xl:text-xl font-semibold text-blue-600 whitespace-nowrap">
+                  <span className="inline">Cholla Behavioral</span>
+                  <span className="inline sm:ml-1">Health</span>
+                </h1>
 
                 <p className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
                   You Deserve To Be Well
@@ -144,7 +156,9 @@ export default function Navbar() {
                         }`}
                         onClick={() => handleNavClick(item.id, item.href)}
                       >
-                        <span className="text-sm lg:text-base whitespace-nowrap">{item.name}</span>
+                        <span className="text-sm lg:text-base whitespace-nowrap">
+                          {item.name}
+                        </span>
                         <ChevronDown
                           className={`w-4 h-4 transition-transform duration-300 ${
                             showDesktopDropdown ? "rotate-180" : "rotate-0"
@@ -166,7 +180,9 @@ export default function Navbar() {
                               key={idx}
                               to={program.href}
                               className="block w-full text-left px-4 py-3 text-gray-700 hover:text-red-600 hover:bg-red-50 transition-all duration-200 text-sm font-medium"
-                              onClick={() => handleNavClick("programs", program.href)}
+                              onClick={() =>
+                                handleNavClick("programs", program.href)
+                              }
                             >
                               {program.name}
                             </Link>
@@ -184,7 +200,9 @@ export default function Navbar() {
                       }`}
                       onClick={() => handleNavClick(item.id, item.href)}
                     >
-                      <span className="text-sm lg:text-base whitespace-nowrap">{item.name}</span>
+                      <span className="text-sm lg:text-base whitespace-nowrap">
+                        {item.name}
+                      </span>
                     </Link>
                   )}
                 </div>
@@ -280,7 +298,9 @@ export default function Navbar() {
                               key={idx}
                               to={program.href}
                               className="block w-full text-left text-gray-600 hover:text-red-600 hover:bg-red-50 py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg transition-all duration-200 text-xs sm:text-sm font-medium"
-                              onClick={() => handleNavClick("programs", program.href)}
+                              onClick={() =>
+                                handleNavClick("programs", program.href)
+                              }
                             >
                               • {program.name}
                             </Link>
