@@ -157,3 +157,36 @@
     }
     
 }
+.movearrow{
+  animation: movearrow  2s   infinite ;
+  transition: 0.3s all ease-in-out;
+ }
+@keyframes movearrow {
+
+   from {
+     
+    transform: translateX(-10px);
+  }
+  to {
+   
+    transform: translateX(0);
+  }
+  
+}
+ 
+ul {
+  width: 50%;
+  min-width: 45%;
+}
+li {
+  display: flex;
+  align-items: flex-start;
+  min-height: 2.5rem;
+}
+.movearrow {
+  flex-shrink: 0;
+}
+.bouns{
+  animation: bouns 2s infinite;
+}
+ 

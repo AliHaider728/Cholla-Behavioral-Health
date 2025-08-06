@@ -19,15 +19,13 @@ import {
   ChevronRight,
   MapPin,
 } from "lucide-react";
-
+import Carousel from "../components/Sliders";
 export default function Home() {
   const services = [
     {
       title: "Behavioral Health",
-      description:
-        "Comprehensive psychiatric and psychological services tailored to your mental health needs.",
-      icon: Brain,
-      href: "/behavioral-health",
+      image:
+        "https://chollabehavioralhealth.com/wp-content/uploads/2024/02/ezgif-6-8e2e058a7a.webp",
       features: [
         "Psychological Assessment",
         "Psychiatric Evaluation",
@@ -37,23 +35,19 @@ export default function Home() {
     },
     {
       title: "Physical Health",
-      description:
-        "Holistic health and wellness services to support your physical well-being.",
-      icon: Stethoscope,
-      href: "/physical-health",
+      image:
+        "https://chollabehavioralhealth.com/wp-content/uploads/2024/02/ezgif-7-099c17d62f.webp",
       features: [
         "Health & Wellness Classes",
         "Health Maintenance & Promotion",
-        "Disease Prevention",
+        "Disease Control and Prevention ",
         "Physical Health Exam",
       ],
     },
     {
       title: "Social Services",
-      description:
-        "Community-based support to foster reintegration and independence.",
-      icon: Users,
-      href: "/social-services",
+      image:
+        "https://chollabehavioralhealth.com/wp-content/uploads/2024/02/ezgif-7-23ae8cc524.webp",
       features: [
         "Community Resources & Partnerships",
         "Pathways to Independence",
@@ -127,30 +121,6 @@ export default function Home() {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "John Martin",
-      location: "Personal Trainer",
-      rating: 5,
-      testimonial:
-        "I got 1 year of therapy in such a short time. I left with a solid plan and the support 'tools' I needed to continue forward on my journey. I was grateful to be able to travel home and continue using the coaching services which has kept me living my life to the fullest potential! Thank you all",
-    },
-    {
-      name: "Alex E.",
-      location: "Account Manager",
-      rating: 5,
-      testimonial:
-        "Cholla Behavioral Health is run by staff that will go above and beyond to help their patients. They have a huge network of resources that benefits patients and families to the road of recovery!!",
-    },
-    {
-      name: "Easton B.",
-      location: "Student / Union",
-      rating: 5,
-      testimonial:
-        "Incredible facilities and staff alike you can tell Cholla cares about their patients!",
-    },
-  ];
-
   const stats = [
     { number: "500+", label: "Lives Transformed" },
     { number: "95%", label: "Success Rate" },
@@ -210,90 +180,7 @@ export default function Home() {
   return (
     <div ref={ref} className="min-h-screen overflow-x-hidden">
       {/* Hero Slider Section */}
-      <section className="relative min-h-[60vh] sm:min-h-[65vh] md:min-h-[70vh] lg:min-h-[80vh] w-full">
-        {heroSlides.map((slide, index) => (
-          <div
-            key={index}
-            className={`slide-${index} absolute inset-0 transition-opacity duration-500 ${
-              index === currentSlide
-                ? "opacity-100"
-                : "opacity-0 pointer-events-none"
-            }`}
-          >
-            <img
-              src={slide.image}
-              alt={slide.title}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
-            <div className="absolute inset-0 flex items-center justify-center pt-12 sm:pt-16">
-              <div className="first-section container mx-auto px-4 sm:px-6 lg:px-8 text-white text-center">
-                <h2 className="gsap-slide-up text-lg sm:text-xl md:text-2xl lg:text-3xl font-heading font-semibold mb-4">
-                  {slide.subtitle}
-                </h2>
-                <h1 className="btn-shine gsap-slide-up text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
-                  {slide.title}
-                </h1>
-                <p className="gsap-slide-up text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto mb-8">
-                  {slide.description}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <NavLink
-                    to="/contact-us"
-                    className="relative font-semibold text-sm sm:text-base md:text-lg rounded-lg text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 px-4 sm:px-6 py-2 sm:py-3 hover:bg-gradient-to-r hover:from-red-600 hover:to-red-800 transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-xl"
-                  >
-                    <span className="relative z-10  mt-1 inline-block">
-                      Start Your Recovery
-                    </span>
-                    <span className="absolute top-0 w-full h-full -left-full -z-0 transform skew-x-12 bg-gradient-to-r from-white/20 to-white/30 transition-transform duration-700 ease-out group-hover:translate-x-full"></span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </NavLink>
-
-                  <a
-                    href="tel:4807906666"
-                    className="relative font-semibold text-sm sm:text-base md:text-lg rounded-lg text-white border-2 border-white px-4 sm:px-6 py-2 sm:py-3 hover:white-red-600  hover:bg-white transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-xl"
-                  >
-                    <span className="relative z-10 inline-flex items-center">
-                      <Phone className="h-4 sm:h-5 w-4 sm:w-5 inline mr-2" />
-                      Call Now: (480) 790-6666
-                    </span>
-                    {/* Hover shimmer */}
-                    <span className="absolute top-0 w-full h-full -left-full -z-0 transform skew-x-12 bg-gradient-to-r from-white/20 to-white/30 transition-transform duration-700 ease-out group-hover:translate-x-full"></span>
-                    {/* Red overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-        <button
-          onClick={prevSlide}
-          className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white p-2 sm:p-3 rounded-full hover:bg-red-500 transition-all duration-300"
-          aria-label="Previous hero slide"
-        >
-          <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white p-2 sm:p-3 rounded-full hover:bg-red-500 transition-all duration-300"
-          aria-label="Next hero slide"
-        >
-          <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
-        </button>
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-          {heroSlides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "bg-blue-600 scale-125" : "bg-white/50"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      </section>
+      <Carousel />
 
       {/* Intro Cards Section */}
       <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
@@ -324,30 +211,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-8 sm:py-12 md:py-16 bg-blue-600 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-            {stats.map((stat, index) => (
-              <div key={index} className="gsap-stagger text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-red-200 text-xs sm:text-sm md:text-base">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* About Section (Patient Centered Care) */}
       <section className="py-8 sm:py-12 md:py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             <div className="gsap-slide-left">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 sm:mb-6">
+              <h2 className="text-xl  sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold  text-[#3b97d0] mb-4 sm:mb-6">
                 Patient Centered Care
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed">
@@ -388,7 +259,7 @@ export default function Home() {
             </div>
             <div className="gsap-slide-right">
               <img
-                src="https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg"
+                src="https://images.pexels.com/photos/3769151/pexels-photo-3769151.jpeg"
                 alt="Patient centered care at Cholla Behavioral Health"
                 className="rounded-xl shadow-lg w-full h-auto object-cover"
               />
@@ -398,19 +269,34 @@ export default function Home() {
       </section>
 
       {/* Mental Health & Co-Occurring Substance Abuse Treatment Section */}
-      <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
+      <section className="py-8 sm:py-12 md:py-16   relative   bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="gsap-slide-up text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Mental Health & Co-Occurring Substance Abuse Treatment
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-gradient-to-br from-red-500 to-red-700 -translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-gradient-to-tl from-blue-600 to-blue-800 translate-x-1/3 translate-y-1/3"></div>
+          </div>
+
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-red-50 to-blue-50 rounded-full border border-red-100">
+              <span className="text-sm font-medium bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
+                Comprehensive Care
+              </span>
+            </div>
+            <h2 className="gsap-slide-up text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-[#3b97d0] mb-6 leading-tight">
+              Mental Health & Co-Occurring
+              <span className="block bg-gradient-to-r from-red-600 via-red-500 to-blue-600 bg-clip-text text-transparent">
+                Substance Abuse Treatment
+              </span>
             </h2>
-            <p className="gsap-slide-up text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+            <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-blue-600 mx-auto mb-6 rounded-full"></div>
+            <p className="gsap-slide-up text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Cholla Behavioral Health offers a continuum of care that allows
               for tailored and individualized drug or alcohol addiction
               treatment plans to support long-term recovery from substance
               abuse.
             </p>
           </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             <div className="gsap-slide-left">
               <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed">
@@ -449,7 +335,7 @@ export default function Home() {
             </div>
             <div className="gsap-slide-right">
               <img
-                src="https://images.pexels.com/photos/7230385/pexels-photo-7230385.jpeg"
+                src="https://images.pexels.com/photos/7230263/pexels-photo-7230263.jpeg"
                 alt="Mental health and substance abuse treatment at Cholla Behavioral Health"
                 className="rounded-xl shadow-lg w-full h-auto object-cover"
               />
@@ -459,80 +345,162 @@ export default function Home() {
       </section>
 
       {/* Call Us or Walk In Section */}
-      <section className="py-8 sm:py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="gsap-slide-up text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Call Us or Walk In!
-            </h2>
-            <p className="gsap-slide-up text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+        <div className=" py-8">
+          <h2 className="bouns gsap-slide-up text-[#3b97d0] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold  text-center leading-tight">
+            Call Us or Walk In!
+          </h2>
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          {/* Header Section */}
+          <div className="text-center mb-12 sm:mb-16 lg:mb-24">
+            <div className="inline-flex items-center justify-center px-4 py-2 mb-6 text-sm font-medium text-blue-700 bg-blue-100 rounded-full">
+              Professional Care Services
+            </div>
+            <p className="gsap-slide-up text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
               Finding a program for you or a loved one can be difficult. If we
               are not the right fit, we will assist in getting the help you
               need.
             </p>
+            <div className="mt-8 w-24 h-1 bg-gradient-to-r from-blue-600 to-red-600 mx-auto rounded-full"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12 sm:mb-16 lg:mb-24">
             {services.map((service, index) => (
-              <div key={index} className="gsap-stagger">
-                <h3 className="text-base sm:text-lg md:text-xl font-heading font-semibold text-gray-900 mb-4">
+              <div key={index} className="flex flex-col">
+                {/* Service Title */}
+                <h3 className="text-lg text-center text-[#3b97d0] sm:text-xl lg:text-2xl font-heading font-bold   mb-3 group-hover:text-blue-700 transition-colors duration-300 whitespace-nowrap overflow-hidden text-ellipsis">
                   {service.title}
                 </h3>
-                <ul className="space-y-2 text-gray-600">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 sm:h-5 w-4 sm:w-5 text-blue-600 hover:rotate-3" />
-                      <span className="text-sm sm:text-base">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4">
-                  <NavLink
-                    to="/services"
-                    className="text-blue-600 hover:text-red-800 font-semibold flex items-center text-sm sm:text-base md:text-lg"
-                    aria-label={`Learn more about ${service.title}`}
-                  >
-                    Show More
-                    <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5 ml-2" />
-                  </NavLink>
+                {/* Service Card */}
+                <div className="gsap-stagger group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 hover:border-blue-200 overflow-hidden hover:-translate-y-1 w-full sm:w-full lg:w-11/12">
+                  {/* Image Container */}
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={`${service.title} illustration`}
+                      className="w-full h-40 sm:h-48 lg:h-56 object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+
+                  {/* Content Container */}
+                  <div className="p-4 sm:p-6 lg:p-8">
+                    {/* Features List */}
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
+                      {service.features.map((feature, idx) => (
+                        <span
+                          key={idx}
+                          className="inline-flex items-center space-x-2 group/item"
+                        >
+                          <CheckCircle className="h-4 w-4 text-red-600 transition-transform duration-300 group-hover/item:scale-110" />
+                          <span className="text-xs sm:text-sm text-slate-600 font-medium whitespace-nowrap">
+                            {feature}
+                          </span>
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Learn More Button */}
+                    <div className="pt-3 border-t border-slate-100">
+                      <NavLink
+                        to="/services"
+                        className="block w-full text-center py-2.5 px-4 bg-gradient-to-r from-red-600 to-pink-600 text-white font-semibold rounded-lg hover:from-red-700 hover:to-pink-700 transition-all duration-300 group/link shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                        aria-label={`Learn more about ${service.title}`}
+                      >
+                        <span className="inline-flex items-center justify-center">
+                          <span className="mr-2">Learn More</span>
+                          <ArrowRight className="h-4 w-4 text-white transition-transform duration-300 group-hover/link:translate-x-1" />
+                        </span>
+                      </NavLink>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="text-center mt-6 sm:mt-8">
-            <a
-              href="tel:4807906666"
-              className="relative font-semibold text-sm sm:text-base md:text-lg rounded-lg text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 px-4 sm:px-6 py-2 sm:py-3 hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-800 transition-all duration-300 group overflow-hidden shadow-lg hover:shadow-xl"
-              aria-label="Call Cholla Behavioral Health at (480) 790-6666"
-            >
-              <span className="relative mt-2 z-10 inline-flex items-center">
-                <Phone className="h-4  sm:h-5 w-4 sm:w-5 inline mr-2" />
-                Call Now: (480) 790-6666
-              </span>
 
-             
-              <span className="absolute top-0 w-full h-full -left-full -z-0 transform skew-x-12 bg-gradient-to-r from-white/20 to-white/30 transition-transform duration-700 ease-out group-hover:translate-x-full"></span>
+          {/* Call to Action */}
+          <div className="text-center">
+            <div className="inline-block">
+              <a
+                href="tel:4807906666"
+                className="relative inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-bold text-white bg-gradient-to-r from-red-600 via-red-700 to-red-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group overflow-hidden border-2 border-red-600 hover:border-blue-600"
+                aria-label="Call Cholla Behavioral Health at (480) 790-6666"
+              >
+                {/* Background Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
 
-              
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </a>
+                {/* Shimmer Effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out">
+                  <div className="h-full w-8 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"></div>
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 flex items-center">
+                  <div className="p-2 bg-white/20 rounded-xl mr-3 group-hover:bg-white/30 transition-colors duration-300">
+                    <Phone className="h-5 w-5" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-sm font-medium opacity-90">
+                      Call Now
+                    </div>
+                    <div className="text-lg font-bold">(480) 790-6666</div>
+                  </div>
+                </div>
+
+                {/* Pulse Animation */}
+                <div className="absolute inset-0 rounded-2xl animate-pulse bg-gradient-to-r from-red-600 to-blue-600 opacity-20 group-hover:opacity-0 transition-opacity duration-300"></div>
+              </a>
+
+              {/* Subtle Helper Text */}
+              <p className="text-sm text-slate-500 mt-4 font-medium">
+                Available 24/7 • Free Consultation • Immediate Support
+              </p>
+            </div>
           </div>
         </div>
       </section>
-
       {/* Visit Us Section with Google Map */}
-      <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="gsap-slide-up text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Visit Us
-            </h2>
-            <p className="gsap-slide-up text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-              Find us at 9201 N 25th Ave Suite 185, Phoenix, AZ 85021. Walk-ins
-              are welcome!
-            </p>
+      <section className="relative py-8 sm:py-12 md:py-16 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
+      {/* Animated Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-gradient-to-br from-red-500 to-red-700 -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-gradient-to-tl from-[#3b97d0] to-blue-600 translate-x-1/3 translate-y-1/3 animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full bg-gradient-to-r from-red-400 to-[#3b97d0] -translate-x-1/2 -translate-y-1/2 animate-pulse delay-500"></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-red-50 to-blue-50 rounded-full border border-red-100">
+            <span className="text-sm font-medium bg-gradient-to-r from-red-600 to-[#3b97d0] bg-clip-text text-transparent">
+              Our Location
+            </span>
           </div>
-          <div className="flex justify-center">
-            <div className="w-full max-w-4xl h-[250px] sm:h-[350px] md:h-[400px] rounded-xl shadow-lg overflow-hidden">
+          <h2 className="gsap-slide-up text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 leading-tight">
+            Visit Us
+            <span className="block bg-gradient-to-r from-blue-600 via-blue-500 to-red-600 bg-clip-text text-transparent">
+              We're Here to Help
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-[#3b97d0] mx-auto mb-4 rounded-full"></div>
+          <p className="gsap-slide-up text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Find us at 9201 N 25th Ave Suite 185, Phoenix, AZ 85021. Walk-ins
+            are welcome!
+          </p>
+        </div>
+
+        <div className="flex justify-center">
+          <div className="relative w-full max-w-4xl">
+            {/* Floating elements around the map */}
+            <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-full opacity-20 animate-pulse"></div>
+            <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-[#3b97d0] to-blue-600 rounded-full opacity-20 animate-pulse delay-700"></div>
+            <div className="absolute -bottom-4 -left-6 w-14 h-14 bg-gradient-to-br from-red-400 to-[#3b97d0] rounded-full opacity-20 animate-pulse delay-300"></div>
+            <div className="absolute -bottom-6 -right-4 w-18 h-18 bg-gradient-to-br from-red-500 to-red-700 rounded-full opacity-20 animate-pulse delay-1000"></div>
+
+            <div className="relative h-[250px] sm:h-[350px] md:h-[400px] rounded-2xl shadow-2xl overflow-hidden group bg-white/70 backdrop-blur-sm border border-gray-100 hover:shadow-3xl transition-all duration-500 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-tr from-red-500/10 via-transparent to-[#3b97d0]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3326.723130382255!2d-112.11163068461416!3d33.56967235134672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b6c5960eaaaab%3A0x2ca55ed74e10edaa!2s9201%20N%2025th%20Ave%20Suite%20185%2C%20Phoenix%2C%20AZ%2085021!5e0!3m2!1sen!2sus!4v1698781234567"
                 width="100%"
@@ -542,104 +510,115 @@ export default function Home() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Cholla Behavioral Health Location"
+                className="rounded-2xl transform group-hover:scale-[1.02] transition-transform duration-700"
               ></iframe>
+              <div className="absolute inset-0 ring-1 ring-inset ring-gray-900/10 rounded-2xl"></div>
             </div>
           </div>
-          <div className="text-center mt-6 sm:mt-8">
-            <a
-              href="https://www.google.com/maps/place/9201+N+25th+Ave+suite+185,+Phoenix,+AZ+85021/@33.57195,-112.113998,17z/data=!4m6!3m5!1s0x872b6c5960eaaaab:0x2ca55ed74e10edaa!8m2!3d33.5696723!4d-112.1116307!16s%2Fg%2F11v67pck0n?hl=en&entry=ttu&g_ep=EgoyMDI1MDcyOC4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-sm sm:text-base md:text-lg text-blue-600 hover:text-blue-800 flex items-center justify-center"
-              aria-label="Get directions to Cholla Behavioral Health"
-            >
-              <MapPin className="h-4 sm:h-5 w-4 sm:w-5 mr-2" />
-              Get Directions
-            </a>
-          </div>
         </div>
-      </section>
+
+        <div className="text-center mt-6 sm:mt-8">
+          <a
+            href="https://www.google.com/maps/place/9201+N+25th+Ave+suite+185,+Phoenix,+AZ+85021/@33.57195,-112.113998,17z/data=!4m6!3m5!1s0x872b6c5960eaaaab:0x2ca55ed74e10edaa!8m2!3d33.5696723!4d-112.1116307!16s%2Fg%2F11v67pck0n?hl=en&entry=ttu&g_ep=EgoyMDI1MDcyOC4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative font-semibold text-sm sm:text-base md:text-lg bg-white/70 backdrop-blur-sm hover:bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl border-2 border-gray-200 hover:border-red-300 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden transform hover:-translate-y-1 inline-flex items-center"
+            aria-label="Get directions to Cholla Behavioral Health"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-red-600/10 to-[#3b97d0]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            <span className="relative z-10 inline-flex items-center">
+              <MapPin className="h-4 sm:h-5 w-4 sm:w-5 mr-2 text-red-600 group-hover:text-[#3b97d0] transition-all duration-300" />
+              <span className="bg-gradient-to-r from-red-600 to-[#3b97d0] bg-clip-text text-transparent font-bold">
+                Get Directions
+              </span>
+            </span>
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-[#3b97d0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+          </a>
+        </div>
+
+        
+      </div>
+    </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-8 sm:py-12 md:py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="gsap-slide-up text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
+      <section className="py-6 sm:py-8 md:py-12 bg-transparent">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="gsap-slide-up text-lg sm:text-xl md:text-2xl lg:text-3xl font-heading font-bold text-gray-900 mb-3">
               Why Choose Cholla Behavioral Health?
             </h2>
-            <p className="gsap-slide-up text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-              Our commitment to excellence and compassionate care sets us apart
-              in the behavioral health field.
+            <p className="gsap-slide-up text-xs sm:text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
+              Compassionate, excellent care sets us apart in behavioral health.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {[
-              {
-                icon: Heart,
-                title: "Compassionate Care",
-                description:
-                  "We treat every individual with dignity, respect, and understanding.",
-              },
-              {
-                icon: Award,
-                title: "Expert Team",
-                description:
-                  "Licensed professionals with years of experience in behavioral health.",
-              },
-              {
-                icon: Shield,
-                title: "Safe Environment",
-                description:
-                  "Confidential, secure, and supportive treatment environment.",
-              },
-              {
-                icon: Users,
-                title: "Proven Results",
-                description:
-                  "Evidence-based treatments with high success rates.",
-              },
-            ].map((item, index) => (
-              <div key={index} className="hello gsap-stagger text-center">
-                <div className="w-14 sm:w-16 h-14 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="rotate h-6 sm:h-8 w-6 sm:w-8 text-blue-600" />
-                </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-heading font-semibold text-gray-900 mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                  {item.description}
-                </p>
+          <div className="flex mb-8 flex-col md:flex-row items-center justify-between gap-6">
+            <div className="md:w-1/2">
+              <img
+                src="https://images.pexels.com/photos/7433822/pexels-photo-7433822.jpeg"
+                alt="Cholla Behavioral Healthcare"
+                className="radius w-full md:w-[660px]  h-auto rounded-lg "
+              />
+            </div>
+            <div className="md:w-1/2">
+              <h1 className="text-[#3b97d0] gsap-slide-up text-lg sm:text-xl md:text-2xl lg:text-3xl font-heading font-bold mb-3">
+                We’ll find the right program for you or your loved one.
+              </h1>
+              <p className="text-base text-gray-700 mb-3">
+                Finding a program for you or a loved one can be difficult. If we
+                are not the right fit, we will assist in getting the help you
+                need.
+              </p>
+              <p className="text-base text-gray-700 mb-3">
+                Here at Cholla Behavioral Healthcare we champion the physical,
+                mental, emotional, and spiritual dimensions of a healthy life.
+                Through professional excellence followed by a safe and caring
+                environment, Cholla offers patient centered dynamic care to
+                ensure treatment clarity is followed by long term success in
+                Health and Wellbeing.
+              </p>
+              <p className="text-base text-gray-700 mb-3">
+                Our comprehensive and evidence-based treatment & intensive
+                programs coupled with the expertise and extensive experience of
+                our compassionate team make us the top choice for your
+                behavioral health needs.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <ul className="text-gray-600 list-none space-y-2 flex-1 w-1/2 min-w-[45%]">
+                  <li className="flex items-start min-h-[2.5rem]">
+                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
+                    Always putting the patient first
+                  </li>
+                  <li className="flex items-start min-h-[2.5rem]">
+                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
+                    Welcoming and inclusive environment
+                  </li>
+                  <li className="flex items-start min-h-[2.5rem]">
+                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
+                    High-quality continuum of care
+                  </li>
+                </ul>
+                <ul className="text-gray-600 list-none space-y-2 flex-1 w-1/2 min-w-[45%]">
+                  <li className="flex items-start min-h-[2.5rem]">
+                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
+                    Family & support network participation
+                  </li>
+                  <li className="flex items-start min-h-[2.5rem]">
+                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
+                    Indoor and outdoor transformative activities
+                  </li>
+                  <li className="flex items-start min-h-[2.5rem]">
+                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
+                    Evidence-based treatment modalities
+                  </li>
+                </ul>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="gsap-slide-up text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Stories of Hope and Recovery
-            </h2>
-            <p className="gsap-slide-up text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-              Hear from individuals who have transformed their lives through our
-              programs.
-            </p>
-          </div>
-          <div className="Recovery grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard
-                key={index}
-                name={testimonial.name}
-                location={testimonial.location}
-                rating={testimonial.rating}
-                testimonial={testimonial.testimonial}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimonialCard />
 
       {/* Take A Look Around Our Office Section */}
       <section className="py-8 sm:py-12 md:py-16 bg-white">
