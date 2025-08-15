@@ -183,7 +183,7 @@ export default function Footer() {
         <div className="border-t border-white/20 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-blue-100 font-medium text-center md:text-left">
-              © 2024 Cholla Behavioral Health. All rights reserved.{' '}
+              © 2025 Cholla Behavioral Health. All rights reserved.{' '}
               <span className="text-blue-200 font-semibold">
                 Powered by TecnoSphere
               </span>
