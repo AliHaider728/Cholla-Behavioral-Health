@@ -441,81 +441,81 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-6 sm:py-8 md:py-12 bg-transparent">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="text-center mb-6 sm:mb-8">
-            <h2 className="gsap-slide-up text-lg sm:text-xl md:text-2xl lg:text-3xl font-heading font-bold text-gray-900 mb-3">
-              Why Choose Cholla Behavioral Health?
-            </h2>
-            <p className="gsap-slide-up text-xs sm:text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
-              Compassionate, excellent care sets us apart in behavioral health.
-            </p>
-          </div>
-          <div className="flex mb-8 flex-col md:flex-row items-center justify-between gap-6">
-            <div className="md:w-1/2">
-              <img
-                src="https://images.pexels.com/photos/7433822/pexels-photo-7433822.jpeg"
-                alt="Cholla Behavioral Healthcare"
-                className="radius w-full md:w-[660px]  h-auto rounded-lg "
-              />
-            </div>
-            <div className="md:w-1/2">
-              <h1 className="text-[#3b97d0] gsap-slide-up text-lg sm:text-xl md:text-2xl lg:text-3xl font-heading font-bold mb-3">
-                We’ll find the right program for you or your loved one.
-              </h1>
-              <p className="text-base text-gray-700 mb-3">
-                Finding a program for you or a loved one can be difficult. If we
-                are not the right fit, we will assist in getting the help you
-                need.
-              </p>
-              <p className="text-base text-gray-700 mb-3">
-                Here at Cholla Behavioral Healthcare we champion the physical,
-                mental, emotional, and spiritual dimensions of a healthy life.
-                Through professional excellence followed by a safe and caring
-                environment, Cholla offers patient centered dynamic care to
-                ensure treatment clarity is followed by long term success in
-                Health and Wellbeing.
-              </p>
-              <p className="text-base text-gray-700 mb-3">
-                Our comprehensive and evidence-based treatment & intensive
-                programs coupled with the expertise and extensive experience of
-                our compassionate team make us the top choice for your
-                behavioral health needs.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <ul className="text-gray-600 list-none space-y-2 flex-1 w-1/2 min-w-[45%]">
-                  <li className="flex items-start min-h-[2.5rem]">
-                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
-                    Always putting the patient first
-                  </li>
-                  <li className="flex items-start min-h-[2.5rem]">
-                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
-                    Welcoming and inclusive environment
-                  </li>
-                  <li className="flex items-start min-h-[2.5rem]">
-                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
-                    High-quality continuum of care
-                  </li>
-                </ul>
-                <ul className="text-gray-600 list-none space-y-2 flex-1 w-1/2 min-w-[45%]">
-                  <li className="flex items-start min-h-[2.5rem]">
-                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
-                    Family & support network participation
-                  </li>
-                  <li className="flex items-start min-h-[2.5rem]">
-                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
-                    Indoor and outdoor transformative activities
-                  </li>
-                  <li className="flex items-start min-h-[2.5rem]">
-                    <ArrowRight className="movearrow w-6 h-6 text-red-600 mr-2 flex-shrink-0" />
-                    Evidence-based treatment modalities
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+     <section className="py-6 sm:py-8 md:py-10 lg:py-12 xl:py-16 bg-transparent">
+  <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+    <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+      <h2 className="gsap-slide-up text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-heading font-bold text-gray-900 mb-3 sm:mb-4">
+        Why Choose Cholla Behavioral Health?
+      </h2>
+      <p className="gsap-slide-up text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl mx-auto">
+        Compassionate, excellent care sets us apart in behavioral health.
+      </p>
+    </div>
+    <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 md:gap-8 lg:gap-10 mb-6 sm:mb-8 md:mb-10">
+      <div className="md:w-1/2 mb-6 md:mb-0">
+        <img
+          src="https://images.pexels.com/photos/7433822/pexels-photo-7433822.jpeg"
+          alt="Cholla Behavioral Healthcare"
+          className="w-full h-auto rounded-lg object-cover max-w-[660px] mx-auto"
+        />
+      </div>
+      <div className="md:w-1/2">
+        <h1 className="text-[#3b97d0] gsap-slide-up text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-heading font-bold mb-3 sm:mb-4">
+          We’ll find the right program for you or your loved one.
+        </h1>
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 mb-3 sm:mb-4">
+          Finding a program for you or a loved one can be difficult. If we
+          are not the right fit, we will assist in getting the help you
+          need.
+        </p>
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 mb-3 sm:mb-4">
+          Here at Cholla Behavioral Healthcare we champion the physical,
+          mental, emotional, and spiritual dimensions of a healthy life.
+          Through professional excellence followed by a safe and caring
+          environment, Cholla offers patient-centered dynamic care to
+          ensure treatment clarity is followed by long-term success in
+          Health and Wellbeing.
+        </p>
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 mb-3 sm:mb-4">
+          Our comprehensive and evidence-based treatment & intensive
+          programs coupled with the expertise and extensive experience of
+          our compassionate team make us the top choice for your
+          behavioral health needs.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-8">
+          <ul className="text-gray-600 list-none space-y-2 flex-1 min-w-0 sm:min-w-[45%]">
+            <li className="flex items-start min-h-[2rem] sm:min-h-[2.5rem]">
+              <ArrowRight className="movearrow w-5 h-5 sm:w-6 sm:h-6 text-red-600 mr-2 flex-shrink-0" />
+              <span className="text-xs sm:text-sm md:text-base">Always putting the patient first</span>
+            </li>
+            <li className="flex items-start min-h-[2rem] sm:min-h-[2.5rem]">
+              <ArrowRight className="movearrow w-5 h-5 sm:w-6 sm:h-6 text-red-600 mr-2 flex-shrink-0" />
+              <span className="text-xs sm:text-sm md:text-base">Welcoming and inclusive environment</span>
+            </li>
+            <li className="flex items-start min-h-[2rem] sm:min-h-[2.5rem]">
+              <ArrowRight className="movearrow w-5 h-5 sm:w-6 sm:h-6 text-red-600 mr-2 flex-shrink-0" />
+              <span className="text-xs sm:text-sm md:text-base">High-quality continuum of care</span>
+            </li>
+          </ul>
+          <ul className="text-gray-600 list-none space-y-2 flex-1 min-w-0 sm:min-w-[45%]">
+            <li className="flex items-start min-h-[2rem] sm:min-h-[2.5rem]">
+              <ArrowRight className="movearrow w-5 h-5 sm:w-6 sm:h-6 text-red-600 mr-2 flex-shrink-0" />
+              <span className="text-xs sm:text-sm md:text-base">Family & support network participation</span>
+            </li>
+            <li className="flex items-start min-h-[2rem] sm:min-h-[2.5rem]">
+              <ArrowRight className="movearrow w-5 h-5 sm:w-6 sm:h-6 text-red-600 mr-2 flex-shrink-0" />
+              <span className="text-xs sm:text-sm md:text-base">Indoor and outdoor transformative activities</span>
+            </li>
+            <li className="flex items-start min-h-[2rem] sm:min-h-[2.5rem]">
+              <ArrowRight className="movearrow w-5 h-5 sm:w-6 sm:h-6 text-red-600 mr-2 flex-shrink-0" />
+              <span className="text-xs sm:text-sm md:text-base">Evidence-based treatment modalities</span>
+            </li>
+          </ul>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Testimonials Section */}
       <TestimonialCard />
