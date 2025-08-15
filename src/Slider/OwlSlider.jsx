@@ -1,516 +1,296 @@
-import React, { useState, useEffect } from 'react';
-import { CheckCircle, ArrowRight, Phone, Users, Heart, Activity, Brain, Stethoscope, Home, ChevronDown, ChevronUp, Star } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 
-// Hero component (keeping your existing one)
-const Hero = ({ title, subtitle, description, primaryCTA, secondaryCTA, backgroundImage }) => (
-  <div className="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 className="text-5xl font-bold mb-4">{title}</h1>
-      <h2 className="text-2xl mb-6 text-blue-100">{subtitle}</h2>
-      <p className="text-xl mb-8 max-w-3xl mx-auto text-blue-100">{description}</p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={primaryCTA.href} className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg transition-colors">
-          {primaryCTA.text}
-        </a>
-        <a href={secondaryCTA.href} className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-3 px-8 rounded-lg transition-colors">
-          {secondaryCTA.text}
-        </a>
-      </div>
-    </div>
-  </div>
-);
+const OwlSlider = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const intervalRef = useRef(null);
 
-// Carousel Component
-const Carousel = () => {
-  const sliderImages = [
-    { src: "https://chollabehavioralhealth.com/wp-content/uploads/2024/06/2148366499-1-600x400.webp", alt: "Therapy session" },
-    { src: "https://chollabehavioralhealth.com/wp-content/uploads/2024/06/61173-1-600x400.webp", alt: "Outdoor activity" },
-    { src: "https://chollabehavioralhealth.com/wp-content/uploads/2024/06/61173-1-600x400.webp", alt: "Yoga session" },
-    { src: "https://chollabehavioralhealth.com/wp-content/uploads/2024/06/21089-1-600x400.webp", alt: "Art therapy" },
-    { src: "https://chollabehavioralhealth.com/wp-content/uploads/2024/06/1289-1-600x400.webp", alt: "Gym session" },
+  const slides = [
+   
+    {
+      id: 1,
+      image: "https://chollabehavioralhealth.com/wp-content/uploads/2024/06/2148366499-1-600x400.webp",
+      title: "Advanced Technology",
+      description: "We use cutting-edge therapeutic tools and technologies for better outcomes and enhanced patient experience.",
+      accent: "from-blue-500 to-indigo-600"
+    },
+    {
+      id: 2,
+      image: "https://chollabehavioralhealth.com/wp-content/uploads/2024/06/61173-1-600x400.webp",
+      title: "Modern Facilities",
+      description: "Our comfortable, state-of-the-art facilities create a healing environment designed for recovery and wellness.",
+      accent: "from-purple-500 to-violet-600"
+    },
+    {
+      id: 3,
+      image: "https://chollabehavioralhealth.com/wp-content/uploads/2024/06/1289-1-600x400.webp",
+      title: "Personalized Treatment",
+      description: "Every treatment plan is tailored to meet your individual needs, goals, and unique circumstances.",
+      accent: "from-rose-500 to-pink-600"
+    },
+    {
+      id: 4,
+      image: "https://chollabehavioralhealth.com/wp-content/uploads/2024/06/21089-1-600x400.webp",
+      title: "Integrated Care",
+      description: "We coordinate all aspects of your care for comprehensive treatment and seamless healthcare experience.",
+      accent: "from-amber-500 to-orange-600"
+    },
+    {
+      id: 5,
+      image: "https://chollabehavioralhealth.com/wp-content/uploads/2024/06/73860-1-600x400.webp",
+      title: "Group Therapy Sessions",
+      description: "Connect with others on similar journeys in supportive group settings with professional guidance.",
+      accent: "from-cyan-500 to-blue-600"
+    }
   ];
 
-  const [visibleItems, setVisibleItems] = useState(5);
-  const [currentIndex, setCurrentIndex] = useState(1);
-  const [isTransitioning, setIsTransitioning] = useState(true);
-
-  // Update visible items based on screen width
-  useEffect(() => {
-    const updateVisibleItems = () => {
-      const width = window.innerWidth;
-      if (width >= 1280) {
-        setVisibleItems(5);
-      } else if (width >= 1024) {
-        setVisibleItems(4);
-      } else if (width >= 768) {
-        setVisibleItems(3);
-      } else if (width >= 480) {
-        setVisibleItems(2);
-      } else {
-        setVisibleItems(1);
+  const startAutoplay = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      if (isPlaying) {
+        nextSlide();
       }
-    };
+    }, 5000);
+  };
 
-    updateVisibleItems();
-    window.addEventListener("resize", updateVisibleItems);
-    return () => window.removeEventListener("resize", updateVisibleItems);
-  }, []);
-
-  // Clone first and last images for infinite loop effect
-  const extendedImages = [
-    sliderImages[sliderImages.length - 1],
-    ...sliderImages,
-    sliderImages[0],
-  ];
-
-  const handleNext = () => {
-    if (currentIndex < extendedImages.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      setIsTransitioning(true);
+  const stopAutoplay = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
   };
 
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-      setIsTransitioning(true);
-    }
+  const nextSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setTimeout(() => setIsTransitioning(false), 800);
   };
 
-  const handleTransitionEnd = () => {
-    if (currentIndex === extendedImages.length - 1) {
-      setIsTransitioning(false);
-      setCurrentIndex(1);
-    } else if (currentIndex === 0) {
-      setIsTransitioning(false);
-      setCurrentIndex(extendedImages.length - 2);
-    }
+  const prevSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setTimeout(() => setIsTransitioning(false), 800);
   };
 
-  // Auto-slide every 3 seconds
+  const goToSlide = (index) => {
+    if (isTransitioning || index === currentSlide) return;
+    setIsTransitioning(true);
+    setCurrentSlide(index);
+    setTimeout(() => setIsTransitioning(false), 800);
+  };
+
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [currentIndex]);
-
-  // Re-enable transition after jump
-  useEffect(() => {
-    if (!isTransitioning) {
-      const timer = setTimeout(() => {
-        setIsTransitioning(true);
-      }, 50);
-      return () => clearTimeout(timer);
+    if (isPlaying) {
+      startAutoplay();
+    } else {
+      stopAutoplay();
     }
-  }, [isTransitioning]);
+    return () => stopAutoplay();
+  }, [isPlaying]);
 
-  const itemWidthPercent = 100 / visibleItems;
+  const getVisibleSlides = () => {
+    const visibleSlides = [];
+    for (let i = -2; i < 3; i++) {
+      const index = (currentSlide + i + slides.length) % slides.length;
+      visibleSlides.push({ ...slides[index], position: i });
+    }
+    return visibleSlides;
+  };
 
   return (
-    <section className="w-screen bg-gray-50 py-10 overflow-hidden">
-      <div className="relative max-w-screen-2xl mx-auto">
-        <div
-          className="flex"
-          style={{
-            width: `${(extendedImages.length * 100) / visibleItems}%`,
-            transform: `translateX(-${currentIndex * itemWidthPercent}%)`,
-            transition: isTransitioning ? "transform 0.5s ease-in-out" : "none",
-          }}
-          onTransitionEnd={handleTransitionEnd}
-        >
-          {extendedImages.map((image, index) => (
-            <div
-              key={index}
-              style={{ width: `${itemWidthPercent}%` }}
-              className="px-2 flex-shrink-0"
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="h-[400px] w-full object-cover rounded-lg shadow"
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Navigation Buttons */}
-        <button
-          onClick={handlePrev}
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-red-800 text-white w-12 h-12 rounded-full z-10 hover:bg-blue-600  duration-300 transition-all"
-        >
-          &#10094;
-        </button>
-        <button
-          onClick={handleNext}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-red-800 text-white w-12 h-12 rounded-full z-10 hover:bg-blue-600 duration-300 transition-all"
-        >
-          &#10095;
-        </button>
+    <div className="width relative bg-gradient-to-br from-gray-50  to-gray-100 rounded-3xl shadow-2xl overflow-hidden">
+       <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'radial-gradient(circle at 25% 25%, #3b97d0 0%, transparent 50%), radial-gradient(circle at 75% 75%, #10b981 0%, transparent 50%)'
+        }}></div>
       </div>
-    </section>
+ 
+      <div className="hidden  w-full lg:block relative z-10 h-96 overflow-hidden">
+        <div className="relative h-full flex items-center justify-center w-full">
+          {getVisibleSlides().map((slide, index) => {
+            const position = slide.position;  
+            return (
+              <div
+                key={`${slide.id}-${currentSlide}-${position}`}
+                className={`group absolute transition-all duration-1000 ease-out transform-gpu ${
+                  position === 0 
+                    ? 'z-30 shadow-3xl' 
+                    : Math.abs(position) === 1
+                      ? 'z-20 shadow-xl opacity-90'
+                      : 'z-10 shadow-lg opacity-70'
+                }`}
+                style={{
+                  width: position === 0 ? '350px' : Math.abs(position) === 1 ? '280px' : '240px',
+                  left: `calc(50% + ${position * 220}px)`,
+                  transform: `translateX(-50%) scale(${
+                    position === 0 ? 1.1 : Math.abs(position) === 1 ? 0.95 : 0.85
+                  }) rotateY(${position * -8}deg) rotateZ(${position * 1}deg)`,
+                  transformStyle: 'preserve-3d',
+                  transformOrigin: 'center center'
+                }}
+              >
+                <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl border border-white/20 backdrop-blur-sm">
+                 
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={slide.image}
+                      alt={slide.title}
+                      className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
+                    />
+  
+                    <div className={`absolute inset-0 bg-gradient-to-t ${slide.accent} opacity-0 group-hover:opacity-20 transition-all duration-700`}></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>                   
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 animate-pulse"></div>
+                    </div>
+                  </div>
+
+                  {/* Content - Only show on center and adjacent slides */}
+                  {Math.abs(position) <= 1 && (
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <div className="transform transition-all duration-700 translate-y-2 group-hover:translate-y-0">
+                        <h3 className={`font-bold mb-3 text-shadow-lg ${
+                          position === 0 ? 'text-2xl' : 'text-xl'
+                        }`}>
+                          {slide.title}
+                        </h3>
+                        <div className="overflow-hidden">
+                          <p className={`text-gray-200 leading-relaxed transform transition-all duration-700 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 ${
+                            position === 0 ? 'text-sm' : 'text-xs'
+                          }`}>
+                            {slide.description}
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* Progress Bar */}
+                      <div className="mt-4 h-1 bg-white/20 rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div className={`h-full bg-gradient-to-r ${slide.accent} transform transition-all duration-1000 scale-x-0 group-hover:scale-x-100 origin-left`}></div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Card Number */}
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white font-bold text-sm border border-white/20">
+                    {slide.id}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Mobile View - 1 slide */}
+      <div className="lg:hidden relative z-10 p-8">
+        <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl">
+          <div className="relative h-96">
+            <img
+              src={slides[currentSlide].image}
+              alt={slides[currentSlide].title}
+              className="w-full h-full object-cover transition-transform duration-1000"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div className={`absolute inset-0 bg-gradient-to-t ${slides[currentSlide].accent} opacity-10`}></div>
+            
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <h3 className="text-2xl font-bold mb-3">{slides[currentSlide].title}</h3>
+              <p className="text-sm text-gray-200 leading-relaxed">{slides[currentSlide].description}</p>
+              
+              {/* Mobile Progress Bar */}
+              <div className="mt-4 h-1 bg-white/20 rounded-full overflow-hidden">
+                <div className={`h-full bg-gradient-to-r ${slides[currentSlide].accent} rounded-full`}></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Enhanced Navigation Buttons */}
+      <button
+        onClick={prevSlide}
+        disabled={isTransitioning}
+        className="absolute left-2 lg:left-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white text-gray-700 hover:text-[#3b97d0] p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed z-40 backdrop-blur-sm border border-white/20"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+      
+      <button
+        onClick={nextSlide}
+        disabled={isTransitioning}
+        className="absolute right-2 lg:right-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white text-gray-700 hover:text-[#3b97d0] p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed z-40 backdrop-blur-sm border border-white/20"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
+
+      {/* Play/Pause Button */}
+      <button
+        onClick={togglePlayPause}
+        className="absolute top-4 right-4 bg-white/95 hover:bg-white text-gray-700 hover:text-[#3b97d0] p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-40 backdrop-blur-sm border border-white/20"
+        aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
+      >
+        {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
+      </button>
+
+      {/* Enhanced Dots Indicator */}
+      <div className="flex justify-center pb-8 pt-4 space-x-2 relative z-10">
+        {slides.map((slide, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            disabled={isTransitioning}
+            className={`relative transition-all duration-500 disabled:cursor-not-allowed ${
+              index === currentSlide 
+                ? 'w-12 h-4' 
+                : 'w-4 h-4 hover:w-6'
+            }`}
+            aria-label={`Go to slide ${index + 1}: ${slide.title}`}
+          >
+            <div className={`w-full h-full rounded-full transition-all duration-500 ${
+              index === currentSlide 
+                ? `bg-gradient-to-r ${slide.accent} shadow-lg` 
+                : 'bg-gray-300 hover:bg-gray-400'
+            }`}></div>
+            
+            {/* Active indicator glow */}
+            {index === currentSlide && (
+              <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${slide.accent} opacity-30 animate-pulse`}></div>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Slide Counter */}
+      <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white px-3 py-2 rounded-full text-sm font-medium border border-white/10 z-40">
+        <span className="font-bold">{currentSlide + 1}</span>
+        <span className="text-gray-300 mx-1">/</span>
+        <span>{slides.length}</span>
+      </div>
+
+      <style jsx>{`
+        .text-shadow-lg {
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .shadow-3xl {
+          box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255,255,255,0.1);
+        }
+        @keyframes shimmer {
+          0% { transform: translateX(-100%) skewX(-12deg); }
+          100% { transform: translateX(200%) skewX(-12deg); }
+        }
+      `}</style>
+    </div>
   );
 };
 
-export default function IndividualServices() {
-  const [expandedService, setExpandedService] = useState(null);
-
-  const conditions = [
-    "Anxiety", "Depression", "Trauma", "TBI", "Addictions", "ADD/ADHD",
-    "Bipolar Disorder", "Personality Disorders", "Compulsive & Risky Behaviors",
-    "Codependency / Self Identity", "Life Transitions", "Relationship Issues",
-    "Feeling 'Stuck' or in Crisis", "And More…"
-  ];
-
-  const services = {
-    behavioralHealth: [
-      "Psychological Assessment", "Psychiatric Evaluation", "Diagnostic Assessment and Treatment Planning",
-      "Mental Health Services", "Individual Therapy", "Group Therapy", "Family Therapy",
-      "Half Day Life Skills", "Vocational Therapy", "Opioid Treatment Program",
-      "Substance Abuse Treatment", "Trauma Based Services", "ADHD Screening",
-      "ADHD Concentration Acceleration Program", "Mixed Modality Groups (Expressive Arts, Communication Skills, Internal Family Systems)",
-      "Evidence-based Cognitive Groups (CBT, DBT, ACT)", "Eye Movement Desensitization and Reprocessing Therapy (EMDR)",
-      "DSI Intensive Programs for those struggling, lost, or stuck", "And More…"
-    ],
-    physicalHealth: [
-      "Health Promotion and Maintenance", "Nutrition and Wellness Education", "Disease Prevention",
-      "Covid-19 Testing", "Syphilis and HIV Testing", "Hepatitis C Testing & Treatment",
-      "Diagnosis and Treatment of Acute Disease", "Hearing and Vision Screens", "Physical Health Examinations",
-      "Immunization Vaccines", "Weight Loss Management", "Chronic Conditions", "Preventative Health",
-      "Vitals and Heart Testing Electrocardiogram (ECG)", "Sick Visits"
-    ],
-    communityServices: [
-      "Peer and Recovery Coaching Programs", "Connecting Members to Community Based Support Systems",
-      "Community Resources", "Use of Crisis Systems", "Community Partnerships", "Volunteering and Job Skills",
-      "Pathways to Independence", "Workforce Development", "Criminal Employment", "Recreation and Fitness",
-      "Education Development and Engagement", "Obtain General Education Development", "Resume Building",
-      "Family Education and Support Groups", "Get and Stay Connected"
-    ]
-  };
-
-  const levelsOfCare = [
-    {
-      title: "Ambulatory Detox",
-      description: "Transforming detox into a smoother, more manageable process is what we do best. Our onsite medical professionals specialize in ambulatory detox, offering personalized care to make your journey towards wellness as comfortable as possible."
-    },
-    {
-      title: "Partial Hospitalization (PHP)",
-      description: "Partial Hospitalization Programming acts as a transitional phase between inpatient or residential care and intensive outpatient programs. It offers a structured daily routine with 25hrs holistic group therapy weekly."
-    },
-    {
-      title: "Intensive Outpatient (IOP)",
-      description: "Intensive Outpatient Programming maintains clinical services at a reduced level 3-5 days with 15-25hrs of therapy a week, focusing on skill development and healthy support networks."
-    },
-    {
-      title: "Outpatient (OP)",
-      description: "The main emphasis of outpatient programming is to provide continuous support. Clients can continue with this level of care for an indefinite period as needed."
-    }
-  ];
-
-  const toggleService = (serviceKey) => {
-    setExpandedService(expandedService === serviceKey ? null : serviceKey);
-  };
-
-  return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <Hero
-        title="Individual Treatment Services"
-        subtitle="Your Primary Care Provider for Mental Health & Psychiatric Treatment"
-        description="Our expert providers offer comprehensive care for a wide range of emotional and mental conditions, integrating behavioral health, physical health, and community support in one accessible location."
-        primaryCTA={{ text: "Schedule Your Appointment", href: "/contact-us" }}
-        secondaryCTA={{ text: "Call Now: (602) 555-1234", href: "tel:6025551234" }}
-        backgroundImage="/placeholder.svg?height=600&width=1200"
-      />
-
-      {/* Primary Care Provider Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Your Primary Care Provider For Mental Health & Psychiatric Treatment
-              </h2>
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Our expert providers treat an expansive list of emotional and mental conditions, ensuring personalized care tailored to your unique needs. We provide accessible care of the highest standards all in one location.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {conditions.map((condition, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-blue-600 flex-shrink-0" />
-                    <span className="text-gray-700 font-medium">{condition}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="/contact-us"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg inline-flex items-center justify-center space-x-2 transition-colors"
-                >
-                  <span>Schedule Your Appointment</span>
-                  <ArrowRight className="h-5 w-5" />
-                </a>
-                <a
-                  href="tel:6025551234"
-                  className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3 px-8 rounded-lg inline-flex items-center justify-center space-x-2 transition-colors"
-                >
-                  <Phone className="h-5 w-5" />
-                  <span>Call Now</span>
-                </a>
-              </div>
-            </div>
-            
-            <div className="relative">
-              <img
-                src="https://images.pexels.com/photos/7659565/pexels-photo-7659565.jpeg"
-                alt="Mental health consultation"
-                className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent rounded-2xl"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive Service Categories */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Comprehensive Care Services
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We integrate three key areas of care to provide holistic treatment and support for your recovery journey.
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            {/* Behavioral Health Card */}
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div 
-                className="p-8 cursor-pointer hover:bg-gray-50 transition-colors"
-                onClick={() => toggleService('behavioralHealth')}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-6">
-                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                      <Brain className="h-8 w-8 text-blue-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                        Behavioral Health
-                      </h3>
-                      <p className="text-gray-600">
-                        Comprehensive mental health and addiction treatment services
-                      </p>
-                    </div>
-                  </div>
-                  {expandedService === 'behavioralHealth' ? (
-                    <ChevronUp className="h-6 w-6 text-blue-600" />
-                  ) : (
-                    <ChevronDown className="h-6 w-6 text-blue-600" />
-                  )}
-                </div>
-              </div>
-              
-              {expandedService === 'behavioralHealth' && (
-                <div className="px-8 pb-8 bg-blue-50">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {services.behavioralHealth.map((service, index) => (
-                      <div key={index} className="flex items-start space-x-3 bg-white p-4 rounded-lg shadow-sm">
-                        <CheckCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-700">{service}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Physical Health Card */}
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div 
-                className="p-8 cursor-pointer hover:bg-gray-50 transition-colors"
-                onClick={() => toggleService('physicalHealth')}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-6">
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                      <Stethoscope className="h-8 w-8 text-green-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                        Physical Health
-                      </h3>
-                      <p className="text-gray-600">
-                        Integrated medical care and wellness services
-                      </p>
-                    </div>
-                  </div>
-                  {expandedService === 'physicalHealth' ? (
-                    <ChevronUp className="h-6 w-6 text-green-600" />
-                  ) : (
-                    <ChevronDown className="h-6 w-6 text-green-600" />
-                  )}
-                </div>
-              </div>
-              
-              {expandedService === 'physicalHealth' && (
-                <div className="px-8 pb-8 bg-green-50">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {services.physicalHealth.map((service, index) => (
-                      <div key={index} className="flex items-start space-x-3 bg-white p-4 rounded-lg shadow-sm">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-700">{service}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Community Services Card */}
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div 
-                className="p-8 cursor-pointer hover:bg-gray-50 transition-colors"
-                onClick={() => toggleService('communityServices')}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-6">
-                    <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
-                      <Users className="h-8 w-8 text-purple-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                        Community Services
-                      </h3>
-                      <p className="text-gray-600">
-                        Support systems and life skills development
-                      </p>
-                    </div>
-                  </div>
-                  {expandedService === 'communityServices' ? (
-                    <ChevronUp className="h-6 w-6 text-purple-600" />
-                  ) : (
-                    <ChevronDown className="h-6 w-6 text-purple-600" />
-                  )}
-                </div>
-              </div>
-              
-              {expandedService === 'communityServices' && (
-                <div className="px-8 pb-8 bg-purple-50">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {services.communityServices.map((service, index) => (
-                      <div key={index} className="flex items-start space-x-3 bg-white p-4 rounded-lg shadow-sm">
-                        <CheckCircle className="h-4 w-4 text-purple-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-700">{service}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Levels of Care Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Levels of Care
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our structured levels of care provide flexible, comprehensive support tailored to your recovery journey.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {levelsOfCare.map((level, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow">
-                <div className="text-center mb-6">
-                  <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
-                    {index + 1}
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {level.title}
-                  </h3>
-                </div>
-                <p className="text-gray-600 leading-relaxed text-sm">
-                  {level.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Community Oriented Residence Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
-                <Home className="h-8 w-8 text-orange-600" />
-              </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Community Oriented Residence
-              </h2>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Cholla offers safe and supportive housing options tailored to transition members in their healing journey. Our community-oriented environment fosters personal growth and the development of essential life skills.
-              </p>
-              <a
-                href="/contact-us"
-                className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-8 rounded-lg inline-flex items-center space-x-2 transition-colors"
-              >
-                <span>Learn More About Housing</span>
-                <ArrowRight className="h-5 w-5" />
-              </a>
-            </div>
-            <div>
-              <img
-                src="https://chollabehavioralhealth.com/wp-content/uploads/2024/05/17169818-3.webp"
-                alt="Community oriented residence"
-                className="rounded-2xl shadow-xl w-full h-auto object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Image Carousel */}
-      <Carousel />
-
-      {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Ready to Start Your Journey?
-          </h2>
-          <p className="text-xl mb-8 text-gray-300 leading-relaxed">
-            Take the first step towards recovery with our comprehensive treatment services. Our compassionate team is here to support you every step of the way.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact-us"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-colors inline-flex items-center justify-center space-x-2 text-lg"
-            >
-              <span>Schedule Consultation</span>
-              <ArrowRight className="h-5 w-5" />
-            </a>
-            <a
-              href="tel:6025551234"
-              className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white font-semibold py-4 px-8 rounded-lg transition-colors inline-flex items-center justify-center space-x-2 text-lg"
-            >
-              <Phone className="h-5 w-5" />
-              <span>Call Now: (602) 555-1234</span>
-            </a>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-}
+export default OwlSlider;

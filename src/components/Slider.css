@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
- 
-
 a {
   text-decoration: none;
 }
@@ -84,34 +82,69 @@ header a {
 .carousel .list .item .buttons {
   display: grid;
   grid-template-columns: repeat(2, 190px);
-   gap: 15px;
-  margin-top: 20px;
-}
-.buttons button{
-    background:#3b97d0;
-    color: white;
-    padding: 10px 10px;
-    border-radius: 10px;
-    transition: 0.3s all ease-in-out;
-    border: 1px solid transparent;
-
-
-}
-.buttons button:hover{
-
-    border:  1px solid white;
-    transform: scale(1.1);
+  gap: 15px;
+  margin-top: 25px;
 }
 
-.carousel .list .item .buttons button:nth-child(2) {
-  background-color: white;
-  border: 1px solid #fff;
-  color:red;
-    
+.buttons button {
+  position: relative;
+  overflow: hidden;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  height: 52px;
+  width: auto;          
+  min-width: max-content;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  background-color: transparent;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
-.btn{
-    font-size: 12px;
-    background-color: #3b97d0;
+
+ 
+.buttons button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+  z-index: 0;
+}
+
+.buttons button:hover::before {
+  left: 120%;
+}
+
+.buttons button span {
+  position: relative;
+  z-index: 1;
+}
+
+ 
+.buttons a:first-child button {
+  background-color: #3b97d0;
+}
+
+.buttons a:first-child button:hover {
+  background-color: #e63946;
+  transform: scale(1.05);
+}
+ 
+.buttons a:nth-child(2) button {
+  background-color: #e63946;
+}
+
+.buttons a:nth-child(2) button:hover {
+  background-color: #3b97d0;
+  transform: scale(1.05);
 }
 
 /* thumbnail */
@@ -178,6 +211,7 @@ header a {
   font-family: monospace;
   font-weight: bold;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .arrows button:hover {
@@ -341,12 +375,64 @@ header a {
   }
 }
 
+ 
+
 @media screen and (max-width: 678px) {
   .carousel .list .item .content {
     padding-right: 0;
+    left: 50%;
+    top: 15%;
+    width: 90%;
   }
-  .carousel .list .item .content .title {
-    font-size: 30px;
+
+  .carousel .list .item .content .title,
+  .carousel .list .item .content .topic {
+    font-size: 2em;
+  }
+
+  .carousel .list .item .content .author {
+    font-size: 0.9em;
+    letter-spacing: 5px;
+  }
+
+  .carousel .list .item .content .des {
+    font-size: 0.8em;
+  }
+
+  /* Updated buttons responsiveness */
+  .carousel .list .item .buttons {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    justify-items: start;
+  }
+
+  .buttons button {
+    width: 100%;
+    max-width: 220px;
+    font-size: 0.9em;
+    padding: 12px 20px;
+    height: auto;
+  }
+
+  .thumbnail .item {
+    width: 100px;
+    height: 150px;
+  }
+
+  .thumbnail .item .content .title,
+  .thumbnail .item .content .description {
+    font-size: 0.7em;
+  }
+
+  .arrows {
+    top: 85%;
+    right: 50%;
+    transform: translateX(50%);
+    width: 200px;
+  }
+
+  .arrows button {
+    width: 35px;
+    height: 35px;
   }
 }
-

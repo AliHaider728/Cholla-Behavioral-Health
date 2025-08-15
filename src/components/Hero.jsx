@@ -13,7 +13,6 @@ export default function Hero({
   overlay = true,
 }) {
   useEffect(() => {
-    // Hero animation timeline
     const tl = gsap.timeline()
 
     tl.fromTo(".hero-content", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" })
@@ -43,9 +42,21 @@ export default function Hero({
 
       {/* Overlay */}
       {overlay && (
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-500 bg-opacity-70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#3b97d0] to-[#128dda] bg-opacity-70" />
       )}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
+    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
 
+    {/* Floating elements */}
+    <div className="absolute top-20 left-10 w-16 h-16 bg-white/10 rounded-full animate-pulse"></div>
+    <div
+      className="absolute bottom-20 right-10 w-20 h-20 bg-white/20 rounded-full animate-bounce"
+      style={{ animationDelay: "1s" }}
+    ></div>
+    <div
+      className="absolute top-1/2 left-1/4 w-8 h-8 bg-white/30 rounded-full animate-pulse"
+      style={{ animationDelay: "0.5s" }}
+    ></div>
       {/* Content */}
       <div className="hero-content relative z-10 container-custom text-center text-white">
         <div className="max-w-4xl mx-auto">
@@ -62,7 +73,7 @@ export default function Hero({
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               to={primaryCTA.href}
-              className="hero-cta btn-primary text-lg px-8 py-4 inline-flex items-center space-x-2 group"
+              className="hero-cta  bg-gradient-to-r hover:bg-none hover:border-white border-2 border-transparent  hover:text-white hover:border-2 duration-300 transition-all   from-red-600 via-red-700 to-red-500    rounded-lg  text-lg px-8 py-4 inline-flex items-center space-x-2 group"
             >
               <span>{primaryCTA.text}</span>
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -71,7 +82,7 @@ export default function Hero({
             {secondaryCTA && (
               <Link
                 to={secondaryCTA.href}
-                className="hero-cta btn-secondary text-lg px-8 py-4 inline-flex items-center space-x-2"
+                className="hero-cta btn-secondary  hover:bg-white hover:border-white   bg-transparent text-white border-2 border-white hover:text-red-600  text-lg px-8 py-4 inline-flex items-center space-x-2"
               >
                 <Phone className="h-5 w-5" />
                 <span>{secondaryCTA.text}</span>

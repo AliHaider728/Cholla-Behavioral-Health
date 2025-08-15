@@ -7,8 +7,7 @@ import Services from "./pages/Services"
 import MatMedManagement from "./pages/MatMedManagement"
 import OutpatientLevels from "./pages/OutpatientLevels"
 import ConcentrationAcceleration from "./pages/ConcentrationAcceleration"
-import IndividualServices from "./Slider/OwlSlider"
-import ServicesPage from "./pages/IndividualServices"
+import IndividualServices from "./pages/IndividualServices"
 import CustomCursor from "./components/Cursor/CustomCursor"
 import PhoneButton from "./components/CallButton"
 import About from "./pages/About"
@@ -29,7 +28,6 @@ function App() {
           <Route path="/mat-med-management" element={<MatMedManagement />} />
           <Route path="/outpatient-levels-of-care" element={<OutpatientLevels />} />
           <Route path="/IndividualServices" element={<IndividualServices/>} />
-          <Route path="/ServicesPage" element={<ServicesPage />} />
           <Route path="/concentration-acceleration-program" element={<ConcentrationAcceleration />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/contact-us" element={<Contact />} />

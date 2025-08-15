@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import "../Animationa.css"
+
 const navigation = [
   { name: "Home", href: "/", id: "home" },
   { name: "Services", href: "/services", id: "services" },
@@ -75,9 +76,9 @@ export default function Navbar() {
     <>
       {/* Main Navigation */}
       <nav
-        className={`fixed w-full z-40 transition-all duration-500 ease-in-out  ${
+        className={`fixed w-full z-40 transition-all duration-500 ease-in-out ${
           isScrolled
-            ? "bg-white  shadow-md top-0"
+            ? "bg-white shadow-md top-0"
             : "bg-white bg-opacity-95 top-0"
         }`}
       >
@@ -86,15 +87,15 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               to="/"
-              className="flex items-center space-x-2  cursor-pointer flex-shrink-0"
+              className="flex items-center space-x-2 cursor-pointer flex-shrink-0"
             >
               <img
                 src="https://chollabehavioralhealth.com/wp-content/uploads/2024/02/Cholla-Behavioral-Health.png"
                 alt="Cholla Behavioral Health"
-                className="w-10  md:w-16 md:h-16 h-10 object-contain"
+                className="w-10 md:w-16 md:h-16 h-10 object-contain"
               />
-              <div className="min-w-0 ">
-                <h1 className="text-base hover:text-red-500 font-semibold text-[#3b97d0]  md:text-xl  whitespace-nowrap">
+              <div className="min-w-0">
+                <h1 className="text-base hover:text-red-500 font-semibold text-[#3b97d0] md:text-xl whitespace-nowrap">
                   Cholla Behavioral Health
                 </h1>
                 <p className="text-xs text-gray-600 font-medium">
@@ -130,7 +131,7 @@ export default function Navbar() {
                         <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#3b97d0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                       </button>
                       <div
-                        className={`absolute top-full left-0  w-72 bg-white rounded-lg shadow-lg border border-gray-100 transition-all duration-300 transform origin-top ${
+                        className={`absolute top-full left-0 w-72 bg-white rounded-lg shadow-lg border border-gray-100 transition-all duration-300 transform origin-top ${
                           showDesktopDropdown
                             ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
                             : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
@@ -170,36 +171,25 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Desktop CTA Button */}
-          <button
+            {/* Call Now Button - Hidden on Mobile, Visible on MD and LG+ */}
+            <div className="hidden md:flex items-center">
+              <button
                 onClick={() => window.open("tel:4807906666", "_self")}
                 className="relative ml-4 font-semibold text-sm lg:text-base tracking-wide rounded-xl text-white cursor-pointer border-none bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 overflow-hidden active:scale-95 transition-all duration-300 group shadow-lg hover:shadow-xl"
               >
-                <span className="relative z-10 inline-flex items-center px-4 lg:px-6 py-2 lg:py-3 transition-colors duration-400 whitespace-nowrap">
+                <span className="relative z-10 inline-flex items-center px-3 md:px-4 lg:px-6 py-2 lg:py-3 transition-colors duration-400 whitespace-nowrap">
                   <Phone className="w-4 h-4 mr-2 animate-pulse" />
-                  Call Now
+                  <span className="md:inline lg:inline">Call Now</span>
                 </span>
                 <span className="absolute top-0 w-full h-full -left-full -z-0 transform skew-x-12 bg-gradient-to-r from-white/20 to-white/30 transition-transform duration-700 ease-out group-hover:translate-x-full"></span>
                 <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
-
-            {/* Tablet CTA Button */}
-            <div className="hidden md:flex lg:hidden items-center">
-              <button
-                onClick={() => window.open("tel:4807906666", "_self")}
-                className="text-white font-semibold text-sm px-3 py-1.5 bg-[#3b97d0] rounded-md transition-all duration-300"
-              >
-                <span className="inline-flex items-center">
-                  <Phone className="w-4 h-4 mr-1" />
-                  Call
-                </span>
               </button>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMenu}
-              className="lg:hidden mobile-menu-button p-2 rounded-md text-gray-700 transition-all duration-300"
+              className="md:hidden mobile-menu-button p-2 rounded-md text-gray-700 transition-all duration-300"
             >
               <div className="relative w-6 h-6">
                 <Menu
@@ -219,7 +209,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         <div
-          className={`lg:hidden mobile-menu transition-all duration-500 ease-in-out ${
+          className={`md:hidden mobile-menu transition-all duration-500 ease-in-out ${
             isOpen
               ? "max-h-screen opacity-100 translate-y-0"
               : "max-h-0 opacity-0 -translate-y-4 overflow-hidden"
@@ -280,9 +270,11 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
-             <button
+              
+              {/* Mobile Call Button inside menu */}
+              <button
                 onClick={() => window.open("tel:4807906666", "_self")}
-                className="bg-gradient-to-r from-red-500 to-red-700 text-white px-4 py-3 sm:py-3.5 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl mt-2 sm:mt-3 flex items-center justify-center space-x-2 text-sm sm:text-base"
+                className="bg-gradient-to-r from-red-500 to-red-700 text-white px-4 py-3 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl mt-2 flex items-center justify-center space-x-2 text-base"
               >
                 <Phone className="w-4 h-4 animate-pulse flex-shrink-0" />
                 <span>Get Help Now</span>
@@ -292,6 +284,7 @@ export default function Navbar() {
         </div>
       </nav>
 
+      {/* Spacer div */}
       <div className="h-16 lg:h-20"></div>
     </>
   );

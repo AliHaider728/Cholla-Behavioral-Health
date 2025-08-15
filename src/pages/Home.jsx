@@ -20,6 +20,7 @@ import {
   MapPin,
 } from "lucide-react";
 import Carousel from "../components/Sliders";
+import OfficeCarousel from "../components/officeCarousel/OfficeCaraousel";
 export default function Home() {
   const services = [
     {
@@ -58,75 +59,6 @@ export default function Home() {
   ];
 
   const ref = useGSAP();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [officeSlide, setOfficeSlide] = useState(0);
-
-  const heroSlides = [
-    {
-      title: "You Deserve To Be Well",
-      subtitle: "Welcome to Cholla",
-      description:
-        "Bridging the gap between medicine and mental well-being through collaborative care.",
-      image:
-        "https://images.pexels.com/photos/33207255/pexels-photo-33207255.jpeg",
-    },
-    {
-      title: "Comprehensive Mental Health Care",
-      subtitle: "Expert Treatment",
-      description:
-        "Personalized care plans for addiction, emotional challenges, and mental health needs.",
-      image:
-        "https://images.pexels.com/photos/33216715/pexels-photo-33216715.jpeg",
-    },
-    {
-      title: "Recovery is a Journey",
-      subtitle: "Lifelong Support",
-      description:
-        "Continuous support and personal development at your own pace.",
-      image:
-        "https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-    },
-  ];
-
-  const officeImages = [
-    {
-      image:
-        "https://images.pexels.com/photos/5452289/pexels-photo-5452289.jpeg",
-      alt: "Cholla Behavioral Health Therapy Room",
-    },
-    {
-      image:
-        "https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg",
-      alt: "Cholla Behavioral Health Office Reception",
-    },
-    {
-      image:
-        "https://images.pexels.com/photos/7176325/pexels-photo-7176325.jpeg",
-      alt: "Cholla Behavioral Health Counseling Room",
-    },
-    {
-      image:
-        "https://images.pexels.com/photos/6129042/pexels-photo-6129042.jpeg",
-      alt: "Cholla Behavioral Health Doctor Looking at an X-ray",
-    },
-    {
-      image:
-        "https://chollabehavioralhealth.com/wp-content/uploads/2024/06/Art_1-768x512.jpg",
-      alt: "Cholla Behavioral Health Meeting Room",
-    },
-    {
-      image:
-        "https://images.pexels.com/photos/8376277/pexels-photo-8376277.jpeg",
-      alt: "Cholla Behavioral Health Dr. Emily Carter",
-    },
-  ];
-
-  const stats = [
-    { number: "500+", label: "Lives Transformed" },
-    { number: "95%", label: "Success Rate" },
-    { number: "24/7", label: "Crisis Support" },
-    { number: "10+", label: "Years Experience" },
-  ];
 
   const introCards = [
     {
@@ -148,34 +80,6 @@ export default function Home() {
         "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg",
     },
   ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-      setOfficeSlide((prev) => (prev + 1) % officeImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
-    );
-  };
-
-  const nextOfficeSlide = () => {
-    setOfficeSlide((prev) => (prev + 1) % officeImages.length);
-  };
-
-  const prevOfficeSlide = () => {
-    setOfficeSlide(
-      (prev) => (prev - 1 + officeImages.length) % officeImages.length
-    );
-  };
 
   return (
     <div ref={ref} className="min-h-screen overflow-x-hidden">
@@ -210,8 +114,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      
 
       {/* About Section (Patient Centered Care) */}
       <section className="py-8 sm:py-12 md:py-16">
@@ -464,81 +366,79 @@ export default function Home() {
       </section>
       {/* Visit Us Section with Google Map */}
       <section className="relative py-8 sm:py-12 md:py-16 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
-      {/* Animated Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-gradient-to-br from-red-500 to-red-700 -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-gradient-to-tl from-[#3b97d0] to-blue-600 translate-x-1/3 translate-y-1/3 animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full bg-gradient-to-r from-red-400 to-[#3b97d0] -translate-x-1/2 -translate-y-1/2 animate-pulse delay-500"></div>
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-8 sm:mb-12">
-          <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-red-50 to-blue-50 rounded-full border border-red-100">
-            <span className="text-sm font-medium bg-gradient-to-r from-red-600 to-[#3b97d0] bg-clip-text text-transparent">
-              Our Location
-            </span>
-          </div>
-          <h2 className="gsap-slide-up text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 leading-tight">
-            Visit Us
-            <span className="block bg-gradient-to-r from-blue-600 via-blue-500 to-red-600 bg-clip-text text-transparent">
-              We're Here to Help
-            </span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-[#3b97d0] mx-auto mb-4 rounded-full"></div>
-          <p className="gsap-slide-up text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Find us at 9201 N 25th Ave Suite 185, Phoenix, AZ 85021. Walk-ins
-            are welcome!
-          </p>
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-gradient-to-br from-red-500 to-red-700 -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-gradient-to-tl from-[#3b97d0] to-blue-600 translate-x-1/3 translate-y-1/3 animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full bg-gradient-to-r from-red-400 to-[#3b97d0] -translate-x-1/2 -translate-y-1/2 animate-pulse delay-500"></div>
         </div>
 
-        <div className="flex justify-center">
-          <div className="relative w-full max-w-4xl">
-            {/* Floating elements around the map */}
-            <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-full opacity-20 animate-pulse"></div>
-            <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-[#3b97d0] to-blue-600 rounded-full opacity-20 animate-pulse delay-700"></div>
-            <div className="absolute -bottom-4 -left-6 w-14 h-14 bg-gradient-to-br from-red-400 to-[#3b97d0] rounded-full opacity-20 animate-pulse delay-300"></div>
-            <div className="absolute -bottom-6 -right-4 w-18 h-18 bg-gradient-to-br from-red-500 to-red-700 rounded-full opacity-20 animate-pulse delay-1000"></div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-red-50 to-blue-50 rounded-full border border-red-100">
+              <span className="text-sm font-medium bg-gradient-to-r from-red-600 to-[#3b97d0] bg-clip-text text-transparent">
+                Our Location
+              </span>
+            </div>
+            <h2 className="gsap-slide-up text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 leading-tight">
+              Visit Us
+              <span className="block bg-gradient-to-r from-blue-600 via-blue-500 to-red-600 bg-clip-text text-transparent">
+                We're Here to Help
+              </span>
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-[#3b97d0] mx-auto mb-4 rounded-full"></div>
+            <p className="gsap-slide-up text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Find us at 9201 N 25th Ave Suite 185, Phoenix, AZ 85021. Walk-ins
+              are welcome!
+            </p>
+          </div>
 
-            <div className="relative h-[250px] sm:h-[350px] md:h-[400px] rounded-2xl shadow-2xl overflow-hidden group bg-white/70 backdrop-blur-sm border border-gray-100 hover:shadow-3xl transition-all duration-500 hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-to-tr from-red-500/10 via-transparent to-[#3b97d0]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3326.723130382255!2d-112.11163068461416!3d33.56967235134672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b6c5960eaaaab%3A0x2ca55ed74e10edaa!2s9201%20N%2025th%20Ave%20Suite%20185%2C%20Phoenix%2C%20AZ%2085021!5e0!3m2!1sen!2sus!4v1698781234567"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Cholla Behavioral Health Location"
-                className="rounded-2xl transform group-hover:scale-[1.02] transition-transform duration-700"
-              ></iframe>
-              <div className="absolute inset-0 ring-1 ring-inset ring-gray-900/10 rounded-2xl"></div>
+          <div className="flex justify-center">
+            <div className="relative w-full max-w-4xl">
+              {/* Floating elements around the map */}
+              <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-full opacity-20 animate-pulse"></div>
+              <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-[#3b97d0] to-blue-600 rounded-full opacity-20 animate-pulse delay-700"></div>
+              <div className="absolute -bottom-4 -left-6 w-14 h-14 bg-gradient-to-br from-red-400 to-[#3b97d0] rounded-full opacity-20 animate-pulse delay-300"></div>
+              <div className="absolute -bottom-6 -right-4 w-18 h-18 bg-gradient-to-br from-red-500 to-red-700 rounded-full opacity-20 animate-pulse delay-1000"></div>
+
+              <div className="relative h-[250px] sm:h-[350px] md:h-[400px] rounded-2xl shadow-2xl overflow-hidden group bg-white/70 backdrop-blur-sm border border-gray-100 hover:shadow-3xl transition-all duration-500 hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-tr from-red-500/10 via-transparent to-[#3b97d0]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3326.723130382255!2d-112.11163068461416!3d33.56967235134672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b6c5960eaaaab%3A0x2ca55ed74e10edaa!2s9201%20N%2025th%20Ave%20Suite%20185%2C%20Phoenix%2C%20AZ%2085021!5e0!3m2!1sen!2sus!4v1698781234567"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Cholla Behavioral Health Location"
+                  className="rounded-2xl transform group-hover:scale-[1.02] transition-transform duration-700"
+                ></iframe>
+                <div className="absolute inset-0 ring-1 ring-inset ring-gray-900/10 rounded-2xl"></div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="text-center mt-6 sm:mt-8">
-          <a
-            href="https://www.google.com/maps/place/9201+N+25th+Ave+suite+185,+Phoenix,+AZ+85021/@33.57195,-112.113998,17z/data=!4m6!3m5!1s0x872b6c5960eaaaab:0x2ca55ed74e10edaa!8m2!3d33.5696723!4d-112.1116307!16s%2Fg%2F11v67pck0n?hl=en&entry=ttu&g_ep=EgoyMDI1MDcyOC4wIKXMDSoASAFQAw%3D%3D"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative font-semibold text-sm sm:text-base md:text-lg bg-white/70 backdrop-blur-sm hover:bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl border-2 border-gray-200 hover:border-red-300 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden transform hover:-translate-y-1 inline-flex items-center"
-            aria-label="Get directions to Cholla Behavioral Health"
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-red-600/10 to-[#3b97d0]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-            <span className="relative z-10 inline-flex items-center">
-              <MapPin className="h-4 sm:h-5 w-4 sm:w-5 mr-2 text-red-600 group-hover:text-[#3b97d0] transition-all duration-300" />
-              <span className="bg-gradient-to-r from-red-600 to-[#3b97d0] bg-clip-text text-transparent font-bold">
-                Get Directions
+          <div className="text-center mt-6 sm:mt-8">
+            <a
+              href="https://www.google.com/maps/place/9201+N+25th+Ave+suite+185,+Phoenix,+AZ+85021/@33.57195,-112.113998,17z/data=!4m6!3m5!1s0x872b6c5960eaaaab:0x2ca55ed74e10edaa!8m2!3d33.5696723!4d-112.1116307!16s%2Fg%2F11v67pck0n?hl=en&entry=ttu&g_ep=EgoyMDI1MDcyOC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative font-semibold text-sm sm:text-base md:text-lg bg-white/70 backdrop-blur-sm hover:bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl border-2 border-gray-200 hover:border-red-300 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden transform hover:-translate-y-1 inline-flex items-center"
+              aria-label="Get directions to Cholla Behavioral Health"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-red-600/10 to-[#3b97d0]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative z-10 inline-flex items-center">
+                <MapPin className="h-4 sm:h-5 w-4 sm:w-5 mr-2 text-red-600 group-hover:text-[#3b97d0] transition-all duration-300" />
+                <span className="bg-gradient-to-r from-red-600 to-[#3b97d0] bg-clip-text text-transparent font-bold">
+                  Get Directions
+                </span>
               </span>
-            </span>
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-[#3b97d0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-          </a>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-[#3b97d0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            </a>
+          </div>
         </div>
-
-        
-      </div>
-    </section>
+      </section>
 
       {/* Why Choose Us Section */}
       <section className="py-6 sm:py-8 md:py-12 bg-transparent">
@@ -621,72 +521,10 @@ export default function Home() {
       <TestimonialCard />
 
       {/* Take A Look Around Our Office Section */}
-      <section className="py-8 sm:py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="gsap-slide-up text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Take A Look Around Our Office!
-            </h2>
-            <p className="gsap-slide-up text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-              Explore our welcoming and comfortable spaces designed to support
-              your journey to wellness.
-            </p>
-          </div>
-          <div className="relative w-full h-[250px] sm:h-[350px] md:h-[500px] rounded-xl shadow-lg overflow-hidden">
-            {officeImages.map((slide, index) => (
-              <div
-                key={index}
-                className={`slide-${index} absolute inset-0 transition-opacity duration-500 ${
-                  index === officeSlide
-                    ? "opacity-100"
-                    : "opacity-0 pointer-events-none"
-                }`}
-              >
-                <img
-                  src={slide.image}
-                  alt={slide.alt}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <div className="absolute bottom-0 p-3 sm:p-4 md:p-6 text-white">
-                  <p className="text-xs sm:text-sm md:text-base">{slide.alt}</p>
-                </div>
-              </div>
-            ))}
-            <button
-              onClick={prevOfficeSlide}
-              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white p-2 sm:p-3 rounded-full hover:bg-red-600 transition-all duration-300"
-              aria-label="Previous office slide"
-            >
-              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
-            </button>
-            <button
-              onClick={nextOfficeSlide}
-              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white p-2 sm:p-3 rounded-full hover:bg-red-600 transition-all duration-300"
-              aria-label="Next office slide"
-            >
-              <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
-            </button>
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-              {officeImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setOfficeSlide(index)}
-                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
-                    index === officeSlide
-                      ? "bg-red-600 scale-125"
-                      : "bg-white/50"
-                  }`}
-                  aria-label={`Go to office slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <OfficeCarousel />
 
       {/* Contact Us 24/7 Section */}
-      <section className="py-8 sm:py-12 md:py-16 bg-gradient-to-r from-blue-400 via-blue-800 to-blue-700 text-white">
+      <section className="py-8 sm:py-12 md:py-16 bg-gradient-to-r from-[#3b97d0] via-[#1677b3] to-[#27a2ee] text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="gsap-slide-up max-w-4xl mx-auto">
             <Clock className="h-10 sm:h-12 md:h-16 w-10 sm:w-12 md:w-16 mx-auto mb-4 sm:mb-6" />
