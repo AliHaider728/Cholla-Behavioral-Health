@@ -12,59 +12,7 @@ import {
 } from "lucide-react";
 import OwlSlider from "../Slider/OwlSlider";
 
-const Hero = ({ title, subtitle, description, primaryCTA, secondaryCTA }) => (
-  <div className="relative bg-[#3b97d0] text-white py-16 md:py-20 lg:py-24 overflow-hidden animate-on-scroll">
-    <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
-    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-
-    {/* Floating elements */}
-    <div className="absolute top-20 left-10 w-16 h-16 bg-white/10 rounded-full animate-pulse"></div>
-    <div
-      className="absolute bottom-20 right-10 w-20 h-20 bg-white/20 rounded-full animate-bounce"
-      style={{ animationDelay: "1s" }}
-    ></div>
-    <div
-      className="absolute top-1/2 left-1/4 w-8 h-8 bg-white/30 rounded-full animate-pulse"
-      style={{ animationDelay: "0.5s" }}
-    ></div>
-
-    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div className="hero-content space-y-8">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight">
-          {title}
-          <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-32 h-1 bg-gradient-to-r from-white via-white to-white rounded-full"></div>
-        </h1>
-        <h2 className="text-xl md:text-2xl lg:text-3xl mb-6 text-blue-100 font-medium max-w-4xl mx-auto leading-relaxed">
-          {subtitle}
-        </h2>
-        <p className="text-lg md:text-xl mb-10 max-w-4xl mx-auto text-blue-50 leading-relaxed font-light">
-          {description}
-        </p>
-        <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <a
-            href={primaryCTA.href}
-            className="group  bg-gradient-to-r hover:bg-none hover:border-white border-2 border-transparent  hover:text-white hover:border-2   from-red-600 via-red-700 to-red-500   font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 hover:scale-105"
-          >
-            <span className="flex items-center justify-center space-x-2">
-              <span>{primaryCTA.text}</span>
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </a>
-          <a
-            href={secondaryCTA.href}
-            className="group border-2 border-white text-white  hover:bg-white hover:text-red-600 font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105"
-          >
-            <span className="flex items-center justify-center space-x-2">
-              <Phone className="h-5 w-5 group-hover:rotate-12 transition-transform" />
-              <span>{secondaryCTA.text}</span>
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
+ import Hero from '../components/Hero'
 const IndividualServices = () => {
   const [openDropdowns, setOpenDropdowns] = useState({});
 
