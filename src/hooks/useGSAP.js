@@ -1,12 +1,9 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-// Register ScrollTrigger if available
-if (typeof window !== "undefined") {
-  import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
-    gsap.registerPlugin(ScrollTrigger)
-  })
-}
+// Register the plugin
+gsap.registerPlugin(ScrollTrigger)
 
 export const useGSAP = () => {
   const ref = useRef(null)
@@ -15,9 +12,8 @@ export const useGSAP = () => {
     const element = ref.current
     if (!element) return
 
-    // Fade in animation
-    const fadeElements = element.querySelectorAll(".gsap-fade-in")
-    fadeElements.forEach((el) => {
+    // Fade in
+    element.querySelectorAll(".gsap-fade-in").forEach((el) => {
       gsap.fromTo(
         el,
         { opacity: 0 },
@@ -30,13 +26,12 @@ export const useGSAP = () => {
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        },
+        }
       )
     })
 
-    // Slide up animation
-    const slideUpElements = element.querySelectorAll(".gsap-slide-up")
-    slideUpElements.forEach((el) => {
+    // Slide Up
+    element.querySelectorAll(".gsap-slide-up").forEach((el) => {
       gsap.fromTo(
         el,
         { opacity: 0, y: 50 },
@@ -50,13 +45,12 @@ export const useGSAP = () => {
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        },
+        }
       )
     })
 
-    // Slide left animation
-    const slideLeftElements = element.querySelectorAll(".gsap-slide-left")
-    slideLeftElements.forEach((el) => {
+    // Slide Left
+    element.querySelectorAll(".gsap-slide-left").forEach((el) => {
       gsap.fromTo(
         el,
         { opacity: 0, x: -50 },
@@ -70,13 +64,12 @@ export const useGSAP = () => {
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        },
+        }
       )
     })
 
-    // Slide right animation
-    const slideRightElements = element.querySelectorAll(".gsap-slide-right")
-    slideRightElements.forEach((el) => {
+    // Slide Right
+    element.querySelectorAll(".gsap-slide-right").forEach((el) => {
       gsap.fromTo(
         el,
         { opacity: 0, x: 50 },
@@ -90,13 +83,12 @@ export const useGSAP = () => {
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        },
+        }
       )
     })
 
-    // Scale animation
-    const scaleElements = element.querySelectorAll(".gsap-scale")
-    scaleElements.forEach((el) => {
+    // Scale
+    element.querySelectorAll(".gsap-scale").forEach((el) => {
       gsap.fromTo(
         el,
         { opacity: 0, scale: 0.8 },
@@ -110,15 +102,15 @@ export const useGSAP = () => {
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        },
+        }
       )
     })
 
-    // Stagger animation
-    const staggerElements = element.querySelectorAll(".gsap-stagger")
-    if (staggerElements.length > 0) {
+    // Staggered animation
+    const staggerEls = element.querySelectorAll(".gsap-stagger")
+    if (staggerEls.length > 0) {
       gsap.fromTo(
-        staggerElements,
+        staggerEls,
         { opacity: 0, y: 30 },
         {
           opacity: 1,
@@ -127,19 +119,17 @@ export const useGSAP = () => {
           ease: "power2.out",
           stagger: 0.1,
           scrollTrigger: {
-            trigger: staggerElements[0],
+            trigger: staggerEls[0],
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        },
+        }
       )
     }
 
+    // Cleanup ScrollTriggers on unmount
     return () => {
-      // Cleanup ScrollTrigger instances
-      if (typeof window !== "undefined" && window.ScrollTrigger) {
-        window.ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-      }
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
     }
   }, [])
 
