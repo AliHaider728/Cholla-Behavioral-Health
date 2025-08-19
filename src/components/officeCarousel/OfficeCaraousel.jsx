@@ -196,13 +196,87 @@ function OfficeCarousel() {
         }
 
         @media (max-width: 768px) {
+          .office-title {
+            font-size: 2rem;
+          }
+
+          .office-slider-container {
+            max-width: 100%;
+            padding: 10px;
+          }
+
+          .office-slide {
+            height: 250px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
           .office-item {
-            width: 280px;
-            height: 200px;
+            width: 90%;
+            max-width: 350px;
+            height: 240px;
+            background-size: cover !important;
+          }
+
+          /* Mobile: Show only one image with smooth animation */
+          .office-item:nth-child(1) {
+            transform: translate(-120%);
+            opacity: 0;
+          }
+
+          .office-item:nth-child(2) {
+            transform: translate(-60%);
+            opacity: 0;
+          }
+
+          .office-item:nth-child(3) {
+            transform: translate(0%);
+            opacity: 1;
+            z-index: 3;
+            left: 50%;
+            margin-left: -175px;
+          }
+
+          .office-item:nth-child(4) {
+            transform: translate(60%);
+            opacity: 0;
+          }
+
+          .office-item:nth-child(n+5) {
+            transform: translate(120%);
+            opacity: 0;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .office-title {
+            font-size: 1.5rem;
+            padding: 0 10px;
+          }
+
+          .office-slider-container {
+            margin: 20px auto;
+            padding: 5px;
           }
 
           .office-slide {
             height: 200px;
+          }
+
+          .office-item {
+            height: 180px !important;
+            max-width: 300px !important;
+          }
+
+          .office-item:nth-child(3) {
+            margin-left: -150px;
+          }
+
+          .office-buttons button {
+            width: 40px;
+            height: 40px;
           }
         }
       `}</style>
