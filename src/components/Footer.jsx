@@ -24,7 +24,7 @@ export default function Footer() {
     <footer className="relative text-white overflow-hidden">
       {/* Clean Gradient Background */}
       <div 
-        className="absolute inset-0 bg-[#0a6ba7]"
+        className="absolute inset-0 bg-[#3b97d0]"
       ></div>
       
       {/* Subtle Animated Background */}
@@ -50,7 +50,7 @@ export default function Footer() {
            style={{ animation: "pulse 4.5s infinite, float 9s ease-in-out infinite reverse", animationDelay: "2s" }}></div>
       
       {/* CSS Animation for Floating Effect */}
-      <style jsx>{`
+      <style >{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) scale(1); }
           25% { transform: translateY(-10px) scale(1.05); }
@@ -73,7 +73,7 @@ export default function Footer() {
       ></div>
       
       {/* CSS Animation Keyframes */}
-      <style jsx>{`
+      <style >{`
         @keyframes dotMove {
           0% { transform: translate(0, 0) rotate(0deg); }
           25% { transform: translate(10px, -5px) rotate(90deg); }
