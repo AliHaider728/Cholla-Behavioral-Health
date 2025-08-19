@@ -24,7 +24,7 @@ export default function Footer() {
     <footer className="relative text-white overflow-hidden">
       {/* Clean Gradient Background */}
       <div 
-        className="absolute inset-0 bg-[#3b97d0]"
+        className="absolute inset-0 bg-[#0a6ba7]"
       ></div>
       
       {/* Subtle Animated Background */}
