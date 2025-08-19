@@ -2,9 +2,9 @@
   position: fixed;
   width: 25px;
   height: 25px;
-  background-color: #3b97d0;
-  border: 3px solid #4b97d0;
-  box-shadow: 0px 0px 20px 0px #3b97d0 round;
+  background-color: #d03b3b;
+  border: 3px solid #d04b4b;
+  box-shadow: 0px 0px 20px 0px #e41c1c round;
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
@@ -18,8 +18,8 @@
   height: 40px;
   opacity: 0.6;
   cursor: pointer;
-  background-color: #e40f0f;
-  border: 3px solid #e40f0f;
+  background-color:#3b97d0;
+  border: 3px solid #4b97d0;
 }
 
 body {
